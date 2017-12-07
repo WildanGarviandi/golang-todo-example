@@ -2,16 +2,18 @@ package controller
 
 import (
 	"net/http"
-	"github.com/gin-gonic/gin"
 	"strconv"
-	"github.com/kellinreaver/hafood-backend/models"
-	"github.com/kellinreaver/hafood-backend/config/database"
+
+	"github.com/WildanGarviandi/hafood-backend/config/database"
+	"github.com/WildanGarviandi/hafood-backend/models"
+
+	"github.com/gin-gonic/gin"
 )
 
 // createTodo add a new todo
 func CreateTodo(c *gin.Context) {
 	completed, _ := strconv.Atoi(c.PostForm("completed"))
-	todo := models.TodoModel{Title:c.PostForm("titles"), Completed: completed}
+	todo := models.TodoModel{Title: c.PostForm("titles"), Completed: completed}
 	db, err := database.ConnectDB()
 
 	if err != nil {
